@@ -1,5 +1,8 @@
 # AbetPDF — 14 private PDF tools, zero uploads
 
+![CI](https://github.com/coding4vinayak/aw-abetpdf/actions/workflows/ci.yml/badge.svg)
+
+
 Merge, split, compress, organize, protect (AES-256), unlock, repair, rotate, delete pages,
 watermark, page numbers, PDF↔JPG, PDF→text. Every job runs 100% in the visitor's browser
 (pdf-lib / pdf.js) — files never touch a server, which is the product's core differentiator.
