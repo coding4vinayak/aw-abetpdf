@@ -1,0 +1,10 @@
+import { PDFDocument } from '@cantoo/pdf-lib';
+const d = await PDFDocument.create();
+d.addPage();
+d.setTitle('Q3 Report'); d.setAuthor('Abet'); d.setKeywords(['a', 'b']); d.setCreator('AbetPDF');
+const bytes = await d.save();
+const r = await PDFDocument.load(bytes);
+console.log('roundtrip:', JSON.stringify({ t: r.getTitle(), a: r.getAuthor(), k: r.getKeywords(), c: r.getCreator() }));
+r.setTitle(''); r.setAuthor(''); r.setKeywords([]); r.setCreator(''); r.setProducer('AbetPDF');
+const r2 = await PDFDocument.load(await r.save());
+console.log('after scrub:', JSON.stringify({ t: r2.getTitle(), a: r2.getAuthor(), k: r2.getKeywords() }));

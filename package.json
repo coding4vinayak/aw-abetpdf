@@ -1,0 +1,32 @@
+{
+  "name": "abetpdf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node scripts/smoke-docx.mjs && node scripts/smoke-form.mjs && node scripts/smoke-meta.mjs && node scripts/smoke-excel.mjs && node scripts/smoke-booklet.mjs && node scripts/smoke-select.mjs",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p ${PORT:-3910}",
+    "parity": "node scripts/parity.mjs",
+    "verify:browser": "node scripts/browser-verify.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "@cantoo/pdf-lib": "^2.11.1",
+    "jszip": "^3.10.2",
+    "next": "^16.3.7",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.3.289",
+    "pptxgenjs": "^4.0.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "tesseract.js": "^7.0.0"
+  }
+}

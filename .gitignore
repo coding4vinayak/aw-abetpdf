@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+*.log
+
+# runtime data — customer emails never belong in source control
+/data/leads.json
+/data/*.json
+!.gitkeep
+
+# secrets
+.env
+.env.*
