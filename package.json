@@ -21,9 +21,9 @@
   "dependencies": {
     "@cantoo/pdf-lib": "^2.11.1",
     "jszip": "^3.10.2",
-    "next": "^16.3.7",
+    "next": "^16.4.0",
     "pdf-lib": "^1.17.1",
-    "pdfjs-dist": "^6.3.289",
+    "pdfjs-dist": "^6.4.299",
     "pptxgenjs": "^4.0.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
