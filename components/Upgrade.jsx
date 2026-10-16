@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { PRO } from '../lib/premium';
 
 export function ProBadge() {
@@ -9,7 +10,7 @@ export function UpgradeNote({ feature }) {
   return (
     <p className="upgrade-note">
       {feature} is an <b>AbetPDF Pro</b> capability — you have used your {PRO.tasteRuns} free tries.
-      Unlock it for good at <a href="/pricing">{PRO.monthly}</a>. Everything else stays free forever.
+      Unlock it for good at <Link href="/pricing">{PRO.monthly}</Link>. Everything else stays free forever.
     </p>
   );
 }

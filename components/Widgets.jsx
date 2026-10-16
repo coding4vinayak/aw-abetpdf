@@ -44,6 +44,19 @@ async function renderPage(page, scale) {
   await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
   return canvas;
 }
+
+// tasteLeft() reads localStorage, which the server never has. Seeding state
+// after mount keeps the first client render identical to the SSR HTML
+// (otherwise React discards the tree) — the documented reason the one
+// set-state-in-effect disable in this file lives here, once, instead of on
+// every tool that spends taste.
+function useTaste() {
+  const [taste, setTaste] = useState(PRO.tasteRuns);
+  /* eslint-disable react-hooks/set-state-in-effect */
+  useEffect(() => { setTaste(tasteLeft()); }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
+  return [taste, setTaste];
+}
 function canvasToJpg(canvas, q) {
   return new Promise((res) => canvas.toBlob((b) => res(b), 'image/jpeg', q));
 }
@@ -1162,10 +1175,7 @@ function OcrTool({ tool }) {
   const [files, setFiles] = useState([]);
   const [lang, setLang] = useState('eng');
   const [proAcc, setProAcc] = useState(false);
-  const [taste, setTaste] = useState(PRO.tasteRuns);
-  // tasteLeft() reads localStorage, which the server never has — syncing after mount keeps
-  // the first client render identical to the SSR HTML (otherwise React discards the tree).
-  useEffect(() => { setTaste(tasteLeft()); }, []);
+  const [taste, setTaste] = useTaste();
   const [proClean, setProClean] = useState(false);
   const [status, setStatus] = useState('');
   const [err, setErr] = useState('');
@@ -1296,10 +1306,7 @@ function diffLines(a, b) {
 function CompareTool({ tool }) {
   const [files, setFiles] = useState([]);
   const [proView, setProView] = useState(false);
-  const [taste, setTaste] = useState(PRO.tasteRuns);
-  // tasteLeft() reads localStorage, which the server never has — syncing after mount keeps
-  // the first client render identical to the SSR HTML (otherwise React discards the tree).
-  useEffect(() => { setTaste(tasteLeft()); }, []);
+  const [taste, setTaste] = useTaste();
   const [shots, setShots] = useState({});
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
@@ -1414,11 +1421,14 @@ function FormFiller({ tool }) {
       const doc = await PDFDocument.load(await bufOf(fs[0]), { ignoreEncryption: true });
       const found = doc.getForm().getFields().map((f) => {
         const name = f.getName();
-        if (f instanceof PDFTextField) return { name, kind: 'text', multiline: f.isMultiline(), max: f.getMaxLength() };
-        if (f instanceof PDFCheckBox) return { name, kind: 'check', on: f.isChecked() };
-        if (f instanceof PDFRadioGroup) return { name, kind: 'radio', options: f.getOptions(), on: f.getSelected() };
-        if (f instanceof PDFDropdown) return { name, kind: 'select', options: f.getOptions(), on: f.getSelected() };
-        if (f instanceof PDFOptionList) return { name, kind: 'select', options: f.getOptions(), on: (f.getSelected()[0] || '') };
+        // `value` is the render-time seed for the uncontrolled inputs below:
+        // reading that seed from `vals.current` during render is what React's
+        // ref rule forbids, so each field carries its own initial value.
+        if (f instanceof PDFTextField) return { name, kind: 'text', multiline: f.isMultiline(), max: f.getMaxLength(), value: '' };
+        if (f instanceof PDFCheckBox) return { name, kind: 'check', on: f.isChecked(), value: f.isChecked() };
+        if (f instanceof PDFRadioGroup) return { name, kind: 'radio', options: f.getOptions(), on: f.getSelected(), value: f.getSelected() || '' };
+        if (f instanceof PDFDropdown) return { name, kind: 'select', options: f.getOptions(), on: f.getSelected(), value: f.getSelected() || '' };
+        if (f instanceof PDFOptionList) return { name, kind: 'select', options: f.getOptions(), on: (f.getSelected()[0] || ''), value: f.getSelected()[0] || '' };
         return { name, kind: 'other' };
       }).filter((f) => f.kind !== 'other');
       vals.current = {};
@@ -1478,11 +1488,11 @@ function FormFiller({ tool }) {
             <div key={i} className="form-row">
               <label className="form-label" title={f.name}>{f.name}</label>
               {f.kind === 'text' && (f.multiline
-                ? <textarea rows={3} defaultValue={vals.current[f.name]} onChange={(e) => (vals.current[f.name] = e.target.value)} />
-                : <input type="text" defaultValue={vals.current[f.name]} maxLength={f.max || undefined} onChange={(e) => (vals.current[f.name] = e.target.value)} />)}
-              {f.kind === 'check' && <input type="checkbox" defaultChecked={!!vals.current[f.name]} onChange={(e) => (vals.current[f.name] = e.target.checked)} />}
+                ? <textarea rows={3} defaultValue={f.value} onChange={(e) => (vals.current[f.name] = e.target.value)} />
+                : <input type="text" defaultValue={f.value} maxLength={f.max || undefined} onChange={(e) => (vals.current[f.name] = e.target.value)} />)}
+              {f.kind === 'check' && <input type="checkbox" defaultChecked={!!f.value} onChange={(e) => (vals.current[f.name] = e.target.checked)} />}
               {(f.kind === 'radio' || f.kind === 'select') && (
-                <select defaultValue={vals.current[f.name]} onChange={(e) => (vals.current[f.name] = e.target.value)}>
+                <select defaultValue={f.value} onChange={(e) => (vals.current[f.name] = e.target.value)}>
                   <option value="">— not set —</option>
                   {f.options.map((o) => <option key={o} value={o}>{o}</option>)}
                 </select>
@@ -1552,10 +1562,7 @@ function WordExport({ tool }) {
 }
 
 function BatchTool({ tool }) {
-  const [taste, setTaste] = useState(PRO.tasteRuns);
-  // tasteLeft() reads localStorage, which the server never has — syncing after mount keeps
-  // the first client render identical to the SSR HTML (otherwise React discards the tree).
-  useEffect(() => { setTaste(tasteLeft()); }, []);
+  const [taste, setTaste] = useTaste();
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
   const [status, setStatus] = useState('');

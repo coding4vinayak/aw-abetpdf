@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { PRO } from '../../lib/premium';
 import { TOOLS } from '../../lib/tools';
 import EmailCapture from '../../components/EmailCapture';
@@ -60,7 +61,7 @@ export default function Pricing() {
           <h3>Free</h3>
           <p className="plan-price">₹0 / $0</p>
           <p className="plan-sub">All {TOOLS.length} tools. Unlimited. No account.</p>
-          <a className="btn btn-ghost" href="/#tools">Start now →</a>
+          <Link className="btn btn-ghost" href="/#tools">Start now →</Link>
         </div>
         <div className="plan-card pro">
           <h3>Pro</h3>

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { TOOLS, TOOL_BY_SLUG } from '../../lib/tools';
 import ToolWidget from '../../components/Widgets';
@@ -40,7 +41,7 @@ export default async function ToolPage({ params }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <div className="tool-hero">
-        <a className="back" href="/">← All AbetPDF tools</a>
+        <Link className="back" href="/">← All AbetPDF tools</Link>
         <p className="eyebrow">AbetPDF · by Abetworks · 100% local</p>
         <h1 className="tool-title">{tool.emoji} {tool.name} <span className="tc-tier free">FREE</span></h1>
         <p className="tool-tagline">{tool.tagline}</p>
