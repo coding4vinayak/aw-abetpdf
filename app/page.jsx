@@ -1,4 +1,5 @@
 import { TOOLS } from '../lib/tools';
+import Link from 'next/link';
 import EmailCapture from '../components/EmailCapture';
 
 export default function Home() {
@@ -13,7 +14,7 @@ export default function Home() {
         </p>
         <div className="hero-btns">
           <a className="btn" href="#tools">Pick a tool ↓</a>
-          <a className="btn btn-ghost" href="/compress">Compress a PDF</a>
+          <Link className="btn btn-ghost" href="/compress">Compress a PDF</Link>
         </div>
         <div className="trust-strip" style={{ justifyContent: 'center', marginTop: 18 }}>
           <span>✓ Zero uploads — files stay on device</span>

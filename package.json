@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node scripts/smoke-docx.mjs && node scripts/smoke-form.mjs && node scripts/smoke-meta.mjs && node scripts/smoke-excel.mjs && node scripts/smoke-booklet.mjs && node scripts/smoke-select.mjs",
+    "lint": "eslint",
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p ${PORT:-3910}",
@@ -31,5 +32,9 @@
   },
   "overrides": {
     "image-size": "2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^10.12.0",
+    "eslint-config-next": "^16.4.0"
   }
 }

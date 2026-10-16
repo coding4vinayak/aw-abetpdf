@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import './globals.css';
 import { TOOLS } from '../lib/tools';
 
@@ -23,13 +24,13 @@ export default function RootLayout({ children }) {
         <div className="top-accent" aria-hidden="true" />
         <header className="site-header">
           <div className="wrap header-row">
-            <a className="logo" href="/">
+            <Link className="logo" href="/">
               <span className="logo-mark">A</span>
               Abet<em>PDF</em>
-            </a>
+            </Link>
             <nav className="site-nav">
-              <a href="/#tools">Tools</a>
-              <a href="/pricing">Pricing</a>
+              <Link href="/#tools">Tools</Link>
+              <Link href="/pricing">Pricing</Link>
               <a href="https://abetworks.in/">Abetworks suite</a>
             </nav>
           </div>
@@ -46,9 +47,9 @@ export default function RootLayout({ children }) {
               <span>© 2026 Abetworks.</span>
               <span className="footer-links">
                 <a href="https://abetworks.in/">abetworks.in</a>
-                <a href="/pricing">Pricing</a>
-                <a href="/privacy">Privacy</a>
-                <a href="/terms">Terms</a>
+                <Link href="/pricing">Pricing</Link>
+                <Link href="/privacy">Privacy</Link>
+                <Link href="/terms">Terms</Link>
               </span>
             </div>
           </div>

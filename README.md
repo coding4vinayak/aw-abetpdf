@@ -11,6 +11,8 @@ watermark, page numbers, PDF↔JPG, PDF→text. Every job runs 100% in the visit
 ```bash
 npm install
 npm run dev      # http://localhost:3000
+npm run lint     # eslint-config-next, zero problems
+npm run test     # engine smoke checks (docx/form/meta/excel/booklet/select)
 npm run build    # static SSG for all 14 tool pages
 ```
 

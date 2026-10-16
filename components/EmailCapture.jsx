@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function EmailCapture({ tool, headline, sub }) {
@@ -44,7 +45,7 @@ export default function EmailCapture({ tool, headline, sub }) {
       {state === 'bad' && <p className="error-note">That email doesn’t look right.</p>}
       {state === 'fail' && <p className="error-note">Couldn’t send just now — try again in a moment.</p>}
       <p className="privacy-note">
-        One email with your report — no newsletter, no spam. See our <a href="/privacy">privacy policy</a>; delete your data anytime at privacy@abetworks.in.
+        One email with your report — no newsletter, no spam. See our <Link href="/privacy">privacy policy</Link>; delete your data anytime at privacy@abetworks.in.
       </p>
     </form>
   );
