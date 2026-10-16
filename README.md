@@ -27,4 +27,12 @@ No environment variables required. Node 22.
 - `app/sitemap.js`, `app/robots.js` — host-aware, work on any domain
 - `public/pdf.worker.min.mjs` — pdf.js worker asset
 
+## Dependency notes
+
+`image-size` is pinned to `2.0.3` via `overrides`. `pptxgenjs@4.0.1` declares
+`^1.2.1` but never loads it — the dist has no reference to it, and pptx
+generation (text and images) succeeds with the package absent entirely — and
+every `1.x` release carries two high advisories that `2.0.3` is outside. Drop
+the override when pptxgenjs widens its range.
+
 Part of the Abetworks family — hub links back to https://hub.abetworks.in/.
