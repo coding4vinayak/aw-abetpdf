@@ -1,4 +1,4 @@
-# Render service manifest for aw-aw-abetpdf. Import via Render → New → Blueprint
+# Render service manifest for aw-abetpdf. Import via Render → New → Blueprint
 # (host this file publicly) or apply from the dashboard.
 #
 # All envVars have `sync: false` — values are not committed here. Set
@@ -6,7 +6,7 @@
 # if multiple services need the same secret.
 services:
   - type: web
-    name: aw-aw-abetpdf
+    name: aw-abetpdf
     runtime: node
     plan: free
     region: singapore
