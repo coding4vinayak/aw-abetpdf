@@ -43,7 +43,7 @@ export default function Pricing() {
         '@context': 'https://schema.org', '@type': 'Product', name: 'AbetPDF Pro',
         description: 'Print-grade PDF engines that run entirely in your browser.',
         brand: { '@type': 'Brand', name: 'AbetPDF' },
-        offers: { '@type': 'Offer', price: '6', priceCurrency: 'USD', url: 'https://abetpdf.abetworks.in/pricing', availability: 'https://schema.org/InStock' },
+        offers: { '@type': 'Offer', price: '6', priceCurrency: 'USD', url: 'https://pdf.abetworks.in/pricing', availability: 'https://schema.org/InStock' },
       }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org', '@type': 'FAQPage',
