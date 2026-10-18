@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node scripts/smoke-docx.mjs && node scripts/smoke-form.mjs && node scripts/smoke-meta.mjs && node scripts/smoke-excel.mjs && node scripts/smoke-booklet.mjs && node scripts/smoke-select.mjs",
+    "test": "node scripts/smoke-docx.mjs && node scripts/smoke-form.mjs && node scripts/smoke-meta.mjs && node scripts/smoke-excel.mjs && node scripts/smoke-booklet.mjs && node scripts/smoke-select.mjs && node scripts/smoke-docs.mjs",
     "lint": "eslint",
     "dev": "next dev",
     "build": "next build",

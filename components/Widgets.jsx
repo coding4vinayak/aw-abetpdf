@@ -770,7 +770,8 @@ export default function ToolWidget({ slug }) {
       tool: { ...T, emoji: '🧷', name: 'Flatten PDF' },
       options: <div className="opt-field"><label style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: 13 }}><input type="checkbox" onChange={(e) => (pro = e.target.checked)} /> 300 dpi print quality <span className="pro-badge">PRO</span></label></div>,
       run: async ([f]) => {
-        const scale = pro ? 3 : 2, q = pro ? 0.92 : 0.85;
+        // Pro is the 300 dpi it sells: 300/72 ≈ 4.17× (PDF points are 72/inch).
+        const scale = pro ? 300 / 72 : 2, q = pro ? 0.92 : 0.85;
         if (pro) { if (proLocked()) throw new Error(PRO_ERR); consumeTaste(); }
         const src = await pdfJsDoc(f);
         const n = await PDFDocument.create();
@@ -784,7 +785,7 @@ export default function ToolWidget({ slug }) {
           if (i % 5 === 0) await new Promise((r) => setTimeout(r));
         }
         const res = await savePdf(n, 'flattened.pdf');
-        res.note = `${src.numPages} pages frozen at ${pro ? '300' : '200'} dpi`;
+        res.note = `${src.numPages} pages frozen at ${Math.round(72 * scale)} dpi`;
         return [res];
       },
       };
@@ -1198,7 +1199,7 @@ function OcrTool({ tool }) {
       for (let i = 1; i <= src.numPages; i++) {
         setStatus(`Recognizing page ${i} of ${src.numPages}…`);
         const pg = await src.getPage(i);
-        const scale = proAcc ? 3 : 2;
+        const scale = proAcc ? 300 / 72 : 2; // the sold "300 dpi Pro accuracy" (72 pt/inch)
         const canvas = await renderPage(pg, scale);
         if (proClean) {
           const cx = canvas.getContext('2d');

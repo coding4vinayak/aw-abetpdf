@@ -1,19 +1,21 @@
-# AbetPDF — 14 private PDF tools, zero uploads
+# AbetPDF — 35 private PDF tools, zero uploads
 
 ![CI](https://github.com/coding4vinayak/aw-abetpdf/actions/workflows/ci.yml/badge.svg)
 
 
 Merge, split, compress, organize, protect (AES-256), unlock, repair, rotate, delete pages,
-watermark, page numbers, PDF↔JPG, PDF→text. Every job runs 100% in the visitor's browser
-(pdf-lib / pdf.js) — files never touch a server, which is the product's core differentiator.
+watermark, page numbers, PDF↔JPG, PDF→text — plus OCR, redaction, signing, forms, booklet
+imposition, Word/Excel/PowerPoint conversion and more; 35 in all. Every job runs 100% in
+the visitor's browser (pdf-lib / pdf.js) — files never touch a server, which is the
+product's core differentiator.
 
 ## Run / build
 ```bash
 npm install
 npm run dev      # http://localhost:3000
 npm run lint     # eslint-config-next, zero problems
-npm run test     # engine smoke checks (docx/form/meta/excel/booklet/select)
-npm run build    # static SSG for all 14 tool pages
+npm run test     # engine smoke checks (docx/form/meta/excel/booklet/select/docs)
+npm run build    # static SSG for all 35 tool pages
 ```
 
 ## Deploy (either, ~2 minutes)

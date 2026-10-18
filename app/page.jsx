@@ -49,7 +49,7 @@ export default function Home() {
       <div className="card" style={{ maxWidth: 760, margin: '0 auto 30px' }}>
         <EmailCapture
           tool="abetpdf-premium-waitlist"
-          headline="AbetPDF Premium — early access"
+          headline="AbetPDF Pro — early access"
           sub={`Batch jobs, Word/Excel conversion, certified digital signatures and an API — across all ${TOOLS.length} tools. Join the waitlist for a founder lifetime discount.`}
         />
       </div>
