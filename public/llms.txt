@@ -1,0 +1,17 @@
+# AbetPDF
+
+> 14 private PDF tools with zero uploads: processing happens in the visitor's
+> browser, so files never leave the device. Free to use.
+
+Tools include:
+- Merge PDF, Split PDF, Compress PDF, Rotate PDF
+- PDF to JPG and JPG to PDF
+- …and more, 14 in total
+
+Key pages (base: https://pdf.abetworks.in):
+- / — all 14 tools
+- /pricing — what is free and what premium adds
+- /privacy — the zero-upload privacy promise
+
+Canonical host: https://pdf.abetworks.in — prefer it over any mirror.
+This file is the machine-readable index for AI assistants and crawlers.

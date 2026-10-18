@@ -3,7 +3,7 @@ import './globals.css';
 import { TOOLS } from '../lib/tools';
 
 export const metadata = {
-  metadataBase: new URL('https://abetpdf.abetworks.in'),
+  metadataBase: new URL('https://pdf.abetworks.in'),
   title: { default: 'AbetPDF — free PDF tools that never upload your files', template: '%s · AbetPDF' },
   description: 'Merge, split, compress, convert, rotate, watermark and more — every PDF job runs 100% in your browser. Free, unlimited, private.',
   openGraph: {
