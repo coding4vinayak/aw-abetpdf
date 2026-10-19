@@ -10,13 +10,11 @@ services:
     runtime: node
     plan: free
     region: singapore
-    healthCheckPath: /
+    healthCheckPath: /api/health
     buildCommand: npm ci && npm run build
     startCommand: npm run start
     envVars:
       - key: NODE_VERSION
         value: "22"
-      - key: NEXT_PUBLIC_APP_URL
-        sync: false       # this service's own public origin, no trailing slash
       - key: NEXT_PUBLIC_STRIPE_PAYMENT_LINK
         sync: false       # optional; pricing page renders inert without it
