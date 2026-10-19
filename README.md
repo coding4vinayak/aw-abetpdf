@@ -20,9 +20,11 @@ npm run build    # static SSG for all 35 tool pages
 
 ## Deploy (either, ~2 minutes)
 **Vercel:** Import repo → auto-detected Next.js → Deploy → Settings → Domains → add your domain.
-**Render:** New Web Service from the repo → build `npm ci && npm run build`, start `npm run start`.
+**Render:** import `render.yaml` (Blueprint) — or New Web Service from the repo → build `npm ci && npm run build`, start `npm run start`. Node 22.
 
-No environment variables required. Node 22.
+One optional env: `NEXT_PUBLIC_STRIPE_PAYMENT_LINK` — set it and /pricing shows the payment link; blank keeps the page inert (no dead button). No other configuration is needed.
+
+The Render health check is `/api/health`: it emits the tool count from the registry the pages are built from and writes-and-removes a probe file in `data/`, so a build with a broken registry or a read-only disk 503s instead of taking traffic.
 
 ## Structure
 - `lib/tools.js` — all tool copy (hero, how-it-works, FAQs) in one place
